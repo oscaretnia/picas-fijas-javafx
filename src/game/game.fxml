@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameController">
+   <children>
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="55.0" prefHeight="28.0" prefWidth="420.0" text="¡A jugar se dijo!" textFill="#07d5e5">
+         <font>
+            <Font name="Segoe UI Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label contentDisplay="CENTER" layoutX="50.0" layoutY="109.0" prefHeight="23.0" prefWidth="189.0" text="Ingresa tu numero" textFill="#07d5e5" AnchorPane.topAnchor="110.0">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="number" alignment="CENTER" layoutX="50.0" layoutY="139.0" prefHeight="40.0" prefWidth="140.0" promptText="1234" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="140.0">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="table" layoutX="351.0" layoutY="100.0" prefHeight="210.0" prefWidth="300.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="140.0">
+        <columns>
+          <TableColumn fx:id="columnNumber" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Numero">
+              <cellValueFactory>
+                  <PropertyValueFactory property="number" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="columnHits" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Aciertos">
+              <cellValueFactory>
+                  <PropertyValueFactory property="hits" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="columnRights" editable="false" maxWidth="100.0" prefWidth="100.0" resizable="false" sortable="false" text="Correctos">
+              <cellValueFactory>
+                  <PropertyValueFactory property="rights" />
+              </cellValueFactory>
+          </TableColumn>
+        </columns>
+      </TableView>
+      <Button layoutX="50.0" layoutY="195.0" mnemonicParsing="false" onAction="#attempt" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #07d5e5;" text="ADIVINAR" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label contentDisplay="CENTER" layoutX="50.0" layoutY="309.0" prefHeight="23.0" prefWidth="147.0" text="Tiempo restante" textFill="#07d5e5">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="time" contentDisplay="CENTER" layoutX="50.0" layoutY="332.0" prefHeight="23.0" prefWidth="147.0" text="time" textFill="#07d5e5">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="403.0" layoutY="60.0" prefHeight="23.0" prefWidth="147.0" text="Tus puntos" textFill="#07d5e5">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="score" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="403.0" layoutY="83.0" prefHeight="23.0" prefWidth="147.0" text="score" textFill="#07d5e5">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
