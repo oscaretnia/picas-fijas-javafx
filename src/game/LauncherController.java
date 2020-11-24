@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -66,13 +67,25 @@ public class LauncherController implements Initializable {
         Integer l = level.getValue();
         String n = name.getText();
         
-        Data.setPlayer(n, l);
+        if (n.trim().isEmpty()) {
+            showError("Campo requerido", "El campo nombre no debe estar vacio");
+        } else {
+            Data.setPlayer(n, l);
         
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        new RulesController().init(stage);
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            new RulesController().init(stage);
+            
+        }
         
         
-        
+    }
+    
+    private void showError(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.show();
     }
     
 }

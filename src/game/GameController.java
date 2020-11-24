@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -80,7 +81,7 @@ public class GameController implements Initializable {
         }
         
         if (game.getState()) {
-            System.out.println("Ganador");
+            showMessage("Ganaste el juego","Ganador");
             player.setPoints(game.getPoints(player.getLevel().getFigures(), getTime()));
             score.setText(player.getPoints() + "");
             Data.upLevel();
@@ -90,7 +91,7 @@ public class GameController implements Initializable {
             
             if (f != fo) {
                 fo = f;
-                System.out.println("Adivinaste la cifra");
+                showMessage("¡Excelente!","Adivinaste la cifra");
                 player.setPoints(game.getPoints(player.getLevel().getFigures(), getTime()));
                 score.setText(player.getPoints() + "");
             }
@@ -103,23 +104,21 @@ public class GameController implements Initializable {
             
             player.setPoints(-5);
             score.setText(player.getPoints() + "");
-        }
-        
-        System.out.println("generated : " + game.getGenerated());        
+        }       
     }
     
     private boolean isValidNumber(String number) {
         number = number.trim();
                 
         if (number.length() != 4) {
-            System.out.println("El numero debe tener 4 cifras");
+            showError("Formato invalido", "El numero debe tener 4 cifras");
             return false;
         }
         
         try {
             Integer.parseInt(number);
         } catch(Exception ex) {
-            System.out.println("El numero no es valido");
+            showError("Formato invalido", "El numero no es valido");
             return false;
         }
         
@@ -142,7 +141,7 @@ public class GameController implements Initializable {
                         game.finish();
                         player.setPoints(-50);
                         score.setText(player.getPoints() + "");
-                        System.out.println("Se acabo el tiempo");
+                        showMessage("Fin del juego", "Se acabo el tiempo reglamentario\nLa cifra secreta era " + game.getGenerated());
                     }
                 });
             }
@@ -153,6 +152,22 @@ public class GameController implements Initializable {
         timer.cancel();
         int tim = Integer.parseInt(time.getText());        
         return tim;
+    }
+    
+    private void showMessage(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informacion");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.show();
+    }
+    
+    private void showError(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.show();
     }
     
 }
